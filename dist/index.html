@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Website promosi potensi UMKM Desa Kayumas, Kecamatan Arjasa, Kabupaten Situbondo, didukung oleh Kayartha" />
+    <title>Potensi UMKM Kayumas</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #140d08;
+        --panel: rgba(71, 34, 16, 0.82);
+        --text: #fcebd5;
+        --muted: #d9b58d;
+        --accent: #b8662d;
+        --border: rgba(255,255,255,0.12);
+        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: radial-gradient(circle at top left, rgba(184,107,47,0.32), transparent 25%), linear-gradient(135deg, #0f0906, #23110a 70%, #140d08);
+        color: var(--text);
+      }
+      a { color: inherit; text-decoration: none; }
+      button { font: inherit; }
+      .app-shell { min-height: 100vh; overflow-x: hidden; }
+      .hero { padding: 20px 20px 70px; position: relative; }
+      .hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at top right, rgba(255, 178, 102, 0.24), transparent 24%);
+        pointer-events: none;
+      }
+      .topbar {
+        max-width: 1180px; margin: 0 auto 36px; display: flex; justify-content: space-between; align-items: center; padding: 14px 18px;
+        border: 1px solid var(--border); border-radius: 999px; backdrop-filter: blur(14px); background: rgba(10,7,5,0.5);
+      }
+      .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+      .brand-mark { font-size: 1.15rem; }
+      .nav-links { display: flex; gap: 16px; color: var(--muted); }
+      .nav-links a:hover, .nav-active { color: var(--text); }
+      .hero-content { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 24px; align-items: center; }
+      .page-section { max-width: 1180px; margin: 0 auto; }
+      .eyebrow { text-transform: uppercase; letter-spacing: .24em; color: #f0b66e; font-size: 0.76rem; margin-bottom: 10px; }
+      h1, h2, h3 { line-height: 1.1; margin: 0 0 12px; }
+      h1 { font-size: clamp(2.4rem, 4vw, 4.2rem); }
+      .lead { color: var(--muted); font-size: 1.04rem; line-height: 1.8; max-width: 640px; }
+      .hero-actions { display: flex; gap: 12px; margin: 24px 0 28px; flex-wrap: wrap; }
+      .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 18px; border-radius: 999px; transition: transform .25s ease; }
+      .btn:hover { transform: translateY(-3px); }
+      .btn.primary { background: linear-gradient(135deg, var(--accent), #e79b49); color: white; }
+      .btn.secondary { border: 1px solid var(--border); background: rgba(255,255,255,.05); }
+      .stat-row { display: flex; gap: 10px; flex-wrap: wrap; }
+      .stat-card { min-width: 112px; padding: 12px; border-radius: 16px; background: rgba(255,255,255,.06); border: 1px solid var(--border); display: flex; flex-direction: column; gap: 4px; }
+      .stat-card strong { color: #ffd09f; }
+      .stat-card span { color: var(--muted); font-size: .9rem; }
+      .hero-card { position: relative; padding: 24px; border-radius: 28px; background: linear-gradient(145deg, rgba(90,45,18,.95), rgba(49,24,10,.95)); border: 1px solid var(--border); box-shadow: 0 24px 50px rgba(0,0,0,.3); animation: float 3.2s ease-in-out infinite; overflow: hidden; }
+      .hero-card::after {
+        content: '';
+        position: absolute; inset: auto -20px -20px auto; width: 120px; height: 120px; background: radial-gradient(circle, rgba(255, 204, 140, 0.25), transparent 70%); border-radius: 50%;
+      }
+      .card-badge { display: inline-block; margin-bottom: 10px; padding: 6px 10px; border-radius: 999px; background: rgba(255,255,255,.13); }
+      .card-type { color: #f1c48d; font-weight: 600; margin-bottom: 8px; }
+      .card-foot { margin-top: 16px; color: #f6d3ac; }
+      .section { max-width: 1180px; margin: 0 auto; padding: 60px 20px 0; }
+      .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+      .panel, .story-card, .product-box, .cta-card, .gallery-card, .metric-card { padding: 22px; border-radius: 24px; background: var(--panel); border: 1px solid var(--border); backdrop-filter: blur(10px); }
+      .panel p, .story-card p, .product-box p, .cta-card p, .gallery-card p { color: var(--muted); line-height: 1.8; }
+      .highlight-list { display: grid; gap: 10px; }
+      .list-item { display: flex; gap: 10px; align-items: start; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.08); }
+      .list-item:last-child { border-bottom: 0; }
+      .product-switcher { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+      .chip { border: 1px solid var(--border); background: rgba(255,255,255,.05); color: var(--muted); border-radius: 999px; padding: 10px 14px; cursor: pointer; }
+      .chip.active { background: linear-gradient(135deg, var(--accent), #e89d47); color: white; }
+      .product-box { display: grid; grid-template-columns: .95fr 1.05fr; gap: 24px; align-items: center; position: relative; overflow: hidden; }
+      .product-box::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(120deg, transparent, rgba(255, 207, 146, 0.08), transparent);
+        transform: translateX(-100%);
+        animation: shine 4s linear infinite;
+      }
+      .cup { width: 220px; height: 250px; border-radius: 0 0 54px 54px; border: 8px solid #f6e1bf; position: relative; overflow: hidden; margin: 0 auto; box-shadow: inset 0 -18px 28px rgba(0,0,0,.24), 0 20px 35px rgba(0,0,0,.3); }
+      .cup::before { content: ''; position: absolute; top: -24px; left: 50%; transform: translateX(-50%); width: 90px; height: 48px; border: 8px solid #f6e1bf; border-radius: 20px 20px 0 0; border-bottom: 0; }
+      .cup-liquid { position: absolute; inset: 0 10px 10px; border-radius: 0 0 42px 42px; background: linear-gradient(180deg, #6d3c1f, #3b1b0c); animation: brew 2s ease-in-out infinite alternate; }
+      .story-grid, .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+      .gallery-card { transition: transform .25s ease; }
+      .gallery-card:hover { transform: translateY(-4px); }
+      .gallery-subtitle { color: #f3c58a !important; }
+      .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 20px; }
+      .metric-card strong { display: block; font-size: 1.5rem; color: #ffd09f; }
+      .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+      .contact-list { padding-left: 18px; color: var(--muted); line-height: 1.8; }
+      .cta-section { padding-bottom: 80px; }
+      .cta-card { background: linear-gradient(135deg, rgba(160,88,31,.95), rgba(54,24,11,.95)); }
+      .footer { max-width: 1180px; margin: 0 auto; padding: 20px 20px 40px; color: var(--muted); text-align: center; }
+      @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+      @keyframes brew { 0% { transform: translateY(0); } 100% { transform: translateY(-10px); } }
+      @keyframes shine { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+      @media (max-width: 900px) {
+        .hero-content, .about-grid, .product-box, .story-grid, .gallery-grid, .contact-grid, .metric-grid { grid-template-columns: 1fr; }
+        .nav-links { display: none; }
+      }
+      @media (max-width: 640px) {
+        .hero { padding: 16px 16px 56px; }
+        .section { padding: 56px 16px 0; }
+        .hero-actions { flex-direction: column; }
+        .btn { width: 100%; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel" src="./main.reactjs"></script>
+  </body>
+</html>
